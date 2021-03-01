@@ -37,4 +37,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+
+    public static function isEmailTaken($email){
+        $email = User::where('email',$email)->first();
+        if($email){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

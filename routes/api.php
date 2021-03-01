@@ -14,7 +14,16 @@ use Illuminate\Http\Request;
 */
 
 Route::namespace('API')->group(function (){
-    Route::post('register', 'UserController@register');
+    Route::post('register', 'UserController@register')->name('api_register');
+    Route::post('login', 'UserController@login')->name('api_login');
+
+    Route::middleware('jwt.verify')->group(function (){
+        Route::put('user','UserController@update')->name('api_user_update');
+
+        //Product
+        Route::post('product')->name('api_product_store');
+        Route::get('product')->name('api_product_store');
+    });
 
 });
 
