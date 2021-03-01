@@ -17,12 +17,16 @@ Route::namespace('API')->group(function (){
     Route::post('register', 'UserController@register')->name('api_register');
     Route::post('login', 'UserController@login')->name('api_login');
 
+    Route::get('user/{user_id}','UserController@getUserDetail')->name('api_user_detail');
+
+
+    Route::get('product','ProductController@index')->name('api_product_index');
+
     Route::middleware('jwt.verify')->group(function (){
         Route::put('user','UserController@update')->name('api_user_update');
 
         //Product
-        Route::post('product')->name('api_product_store');
-        Route::get('product')->name('api_product_store');
+        Route::post('product','ProductController@store')->name('api_product_store');
     });
 
 });

@@ -90,4 +90,11 @@ class UserController extends Controller
             "api_message" => "success : user data updated ","data" => $user
         ],200);
     }
+
+    public function getUserDetail($user_id){
+        $user = User::where('id',$user_id)->first();
+        return response()->json([
+            "api_message" => "success : Getting user detail ...","data" => $user
+        ],200);
+    }
 }

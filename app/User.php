@@ -26,7 +26,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','created_at', 'updated_at','email_verified_at'
     ];
 
     public function getJWTIdentifier()
@@ -47,4 +47,11 @@ class User extends Authenticatable implements JWTSubject
             return false;
         }
     }
+
+    public function getProductTotalAttribute(){
+        $total = Product::where('user_id',$this->id)->count();
+        return $total;
+    }
+
+    public $appends = ['product_total'];
 }
